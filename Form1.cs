@@ -81,33 +81,35 @@ namespace Свой_тип
             }
         }
 
+        private void Translate()
+        {
+            try
+            {
+                double num = double.Parse(volume3.Text);
+
+                Volume vol = new Volume(num, GetMeasureType(type3));
+
+                Translator translator = new Translator(vol.getValueInMeters(), GetMeasureType(type4));
+
+                volume4.Text = translator.getResult().ToString();
+            }
+            catch (FormatException)
+            {
+            }
+        }
+
+        private void ChangeActive(object sender, EventArgs e)
+        {
+            Calculate();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
         }
 
-        private void volume1_TextChanged(object sender, EventArgs e)
+        private void TranslateActive(object sender, EventArgs e)
         {
-            Calculate();
-        }
-
-        private void volume2_TextChanged(object sender, EventArgs e)
-        {
-            Calculate();
-        }
-
-        private void type1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Calculate();
-        }
-
-        private void type2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Calculate();
-        }
-
-        private void operation_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Calculate();
+            Translate();
         }
     }
 }

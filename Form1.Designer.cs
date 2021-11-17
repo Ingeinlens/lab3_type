@@ -48,13 +48,18 @@ namespace Свой_тип
             this.res = new System.Windows.Forms.Label();
             this.result = new System.Windows.Forms.Label();
             this.notes = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // task
             // 
             this.task.AutoSize = true;
             this.task.Font = new System.Drawing.Font("Gotham Pro", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.task.Location = new System.Drawing.Point(12, 20);
+            this.task.Location = new System.Drawing.Point(19, 20);
             this.task.Name = "task";
             this.task.Size = new System.Drawing.Size(400, 45);
             this.task.TabIndex = 0;
@@ -63,7 +68,7 @@ namespace Свой_тип
             // about
             // 
             this.about.Font = new System.Drawing.Font("Gotham Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.about.Location = new System.Drawing.Point(20, 81);
+            this.about.Location = new System.Drawing.Point(24, 81);
             this.about.Name = "about";
             this.about.Size = new System.Drawing.Size(550, 100);
             this.about.TabIndex = 1;
@@ -98,7 +103,7 @@ namespace Свой_тип
             this.volume1.Size = new System.Drawing.Size(120, 30);
             this.volume1.TabIndex = 4;
             this.volume1.Text = "100";
-            this.volume1.TextChanged += new System.EventHandler(this.volume1_TextChanged);
+            this.volume1.TextChanged += new System.EventHandler(this.ChangeActive);
             // 
             // type1
             // 
@@ -117,7 +122,7 @@ namespace Свой_тип
             this.type1.Size = new System.Drawing.Size(70, 30);
             this.type1.TabIndex = 5;
             this.type1.Text = "м^3";
-            this.type1.SelectedIndexChanged += new System.EventHandler(this.type1_SelectedIndexChanged);
+            this.type1.SelectedIndexChanged += new System.EventHandler(this.ChangeActive);
             // 
             // type2
             // 
@@ -136,7 +141,7 @@ namespace Свой_тип
             this.type2.Size = new System.Drawing.Size(70, 30);
             this.type2.TabIndex = 7;
             this.type2.Text = "м^3";
-            this.type2.SelectedIndexChanged += new System.EventHandler(this.type2_SelectedIndexChanged);
+            this.type2.SelectedIndexChanged += new System.EventHandler(this.ChangeActive);
             // 
             // volume2
             // 
@@ -147,7 +152,7 @@ namespace Свой_тип
             this.volume2.Size = new System.Drawing.Size(120, 30);
             this.volume2.TabIndex = 6;
             this.volume2.Text = "100";
-            this.volume2.TextChanged += new System.EventHandler(this.volume2_TextChanged);
+            this.volume2.TextChanged += new System.EventHandler(this.ChangeActive);
             // 
             // operation
             // 
@@ -167,7 +172,7 @@ namespace Свой_тип
             this.operation.Size = new System.Drawing.Size(70, 30);
             this.operation.TabIndex = 8;
             this.operation.Text = "+";
-            this.operation.SelectedIndexChanged += new System.EventHandler(this.operation_SelectedIndexChanged);
+            this.operation.SelectedIndexChanged += new System.EventHandler(this.ChangeActive);
             // 
             // text2
             // 
@@ -206,6 +211,7 @@ namespace Свой_тип
             this.type4.Size = new System.Drawing.Size(70, 30);
             this.type4.TabIndex = 14;
             this.type4.Text = "л";
+            this.type4.SelectedIndexChanged += new System.EventHandler(this.TranslateActive);
             // 
             // volume4
             // 
@@ -213,6 +219,7 @@ namespace Свой_тип
             this.volume4.Location = new System.Drawing.Point(325, 523);
             this.volume4.Margin = new System.Windows.Forms.Padding(10);
             this.volume4.Name = "volume4";
+            this.volume4.ReadOnly = true;
             this.volume4.Size = new System.Drawing.Size(166, 30);
             this.volume4.TabIndex = 13;
             this.volume4.Text = "1000";
@@ -234,6 +241,7 @@ namespace Свой_тип
             this.type3.Size = new System.Drawing.Size(70, 30);
             this.type3.TabIndex = 12;
             this.type3.Text = "м^3";
+            this.type3.SelectedIndexChanged += new System.EventHandler(this.TranslateActive);
             // 
             // volume3
             // 
@@ -244,6 +252,7 @@ namespace Свой_тип
             this.volume3.Size = new System.Drawing.Size(170, 30);
             this.volume3.TabIndex = 11;
             this.volume3.Text = "1";
+            this.volume3.TextChanged += new System.EventHandler(this.TranslateActive);
             // 
             // equals
             // 
@@ -285,12 +294,67 @@ namespace Свой_тип
             this.notes.TabIndex = 18;
             this.notes.Text = "Справочник";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Gotham Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(25, 645);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(266, 22);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "м^3 — метры кубические";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Gotham Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(25, 681);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(115, 22);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "л — литры";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Gotham Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(323, 681);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(154, 22);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "бр — баррели";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Gotham Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(323, 645);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(193, 22);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "мл — миллилитры";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Gotham Pro", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(25, 716);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(199, 22);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "ам — антиматерия";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(601, 765);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.notes);
             this.Controls.Add(this.result);
             this.Controls.Add(this.res);
@@ -339,6 +403,11 @@ namespace Свой_тип
         private System.Windows.Forms.Label res;
         private System.Windows.Forms.Label result;
         private System.Windows.Forms.Label notes;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 
